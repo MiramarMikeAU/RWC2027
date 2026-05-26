@@ -240,6 +240,48 @@
   .venue-map { width: 100%; height: 200px; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
   .venue-map iframe { width: 100%; height: 100%; border: none; }
 
+  /* Last-meeting expanded panel */
+  .last-meeting-panel {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    height: 140px;
+    background: var(--surface2);
+  }
+  .last-meeting-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.55) saturate(0.9);
+  }
+  .last-meeting-detail {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    pointer-events: none;
+  }
+  .lm-score {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.04em;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    line-height: 1;
+  }
+  .lm-meta {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+    letter-spacing: 0.03em;
+  }
+
   /* Date grouping */
   .date-group-header { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 0.4rem 0 0.35rem; border-bottom: 2px solid var(--border); margin-bottom: 0.6rem; margin-top: 1.4rem; }
   .date-group-header:first-child { margin-top: 0; }
@@ -307,12 +349,12 @@
     <span class="filter-label">Pool</span>
     <select id="filter-pool">
       <option value="">All Pools</option>
-      <option value="1">Pool 1</option>
-      <option value="2">Pool 2</option>
-      <option value="3">Pool 3</option>
-      <option value="4">Pool 4</option>
-      <option value="5">Pool 5</option>
-      <option value="6">Pool 6</option>
+      <option value="A">Pool A</option>
+      <option value="B">Pool B</option>
+      <option value="C">Pool C</option>
+      <option value="D">Pool D</option>
+      <option value="E">Pool E</option>
+      <option value="F">Pool F</option>
     </select>
   </div>
   <div class="filter-group">
@@ -355,21 +397,21 @@ function flagImg(name, w, h) {
 
 // ─── POOLS ──────────────────────────────────────────────────────────────────
 const POOLS = {
-  1: { name:"Pool 1", teams:["New Zealand","Australia","Chile","Hong Kong China"] },
-  2: { name:"Pool 2", teams:["South Africa","Italy","Georgia","Romania"] },
-  3: { name:"Pool 3", teams:["Argentina","Fiji","Spain","Canada"] },
-  4: { name:"Pool 4", teams:["Ireland","Scotland","Uruguay","Portugal"] },
-  5: { name:"Pool 5", teams:["France","Japan","USA","Samoa"] },
-  6: { name:"Pool 6", teams:["England","Wales","Tonga","Zimbabwe"] },
+  "A": { name:"Pool A", teams:["New Zealand","Australia","Chile","Hong Kong China"] },
+  "B": { name:"Pool B", teams:["South Africa","Italy","Georgia","Romania"] },
+  "C": { name:"Pool C", teams:["Argentina","Fiji","Spain","Canada"] },
+  "D": { name:"Pool D", teams:["Ireland","Scotland","Uruguay","Portugal"] },
+  "E": { name:"Pool E", teams:["France","Japan","USA","Samoa"] },
+  "F": { name:"Pool F", teams:["England","Wales","Tonga","Zimbabwe"] },
 };
 
 const POOL_STANDINGS = {
-  1:[{team:"New Zealand",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Australia",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Chile",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Hong Kong China",p:0,w:0,d:0,l:0,f:0,a:0,pts:0}],
-  2:[{team:"South Africa",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Italy",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Georgia",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Romania",p:0,w:0,d:0,l:0,f:0,a:0,pts:0}],
-  3:[{team:"Argentina",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Fiji",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Spain",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Canada",p:0,w:0,d:0,l:0,f:0,a:0,pts:0}],
-  4:[{team:"Ireland",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Scotland",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Uruguay",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Portugal",p:0,w:0,d:0,l:0,f:0,a:0,pts:0}],
-  5:[{team:"France",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Japan",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"USA",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Samoa",p:0,w:0,d:0,l:0,f:0,a:0,pts:0}],
-  6:[{team:"England",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Wales",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Tonga",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Zimbabwe",p:0,w:0,d:0,l:0,f:0,a:0,pts:0}],
+  "A":[{team:"New Zealand",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Australia",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Chile",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Hong Kong China",p:0,w:0,d:0,l:0,f:0,a:0,pts:0}],
+  "B":[{team:"South Africa",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Italy",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Georgia",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Romania",p:0,w:0,d:0,l:0,f:0,a:0,pts:0}],
+  "C":[{team:"Argentina",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Fiji",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Spain",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Canada",p:0,w:0,d:0,l:0,f:0,a:0,pts:0}],
+  "D":[{team:"Ireland",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Scotland",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Uruguay",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Portugal",p:0,w:0,d:0,l:0,f:0,a:0,pts:0}],
+  "E":[{team:"France",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Japan",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"USA",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Samoa",p:0,w:0,d:0,l:0,f:0,a:0,pts:0}],
+  "F":[{team:"England",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Wales",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Tonga",p:0,w:0,d:0,l:0,f:0,a:0,pts:0},{team:"Zimbabwe",p:0,w:0,d:0,l:0,f:0,a:0,pts:0}],
 };
 
 // ─── TEAM DATA ───────────────────────────────────────────────────────────────
@@ -533,8 +575,8 @@ const FIXTURES = [
 
 // ─── HELPERS ────────────────────────────────────────────────────────────────
 function getPool(teamName) {
-  for (const [num, pool] of Object.entries(POOLS)) {
-    if (pool.teams.includes(teamName)) return parseInt(num);
+  for (const [key, pool] of Object.entries(POOLS)) {
+    if (pool.teams.includes(teamName)) return key;
   }
   return null;
 }
@@ -586,7 +628,7 @@ function getFilteredFixtures() {
     if (pool) {
       if (f.isKnockout) return false;
       const hp = getPool(f.home), ap = getPool(f.away);
-      if (hp !== parseInt(pool) && ap !== parseInt(pool)) return false;
+      if (hp !== pool && ap !== pool) return false;
     }
     return true;
   });
@@ -733,6 +775,16 @@ function renderFixtureCard(f) {
     : renderTeamCell(f.away, 'right');
 
   // Body sections
+  const lmBodyHtml = lm && lm.img
+    ? `<div class="section-title">Last Meeting · ${lm.event}</div>
+       <div class="last-meeting-panel">
+         <img class="last-meeting-img" src="${lm.img}" alt="Last meeting: ${f.home} vs ${f.away}" loading="lazy" onerror="this.parentElement.style.display='none'">
+         <div class="last-meeting-detail">
+           <span class="lm-score">${lm.score}</span>
+           <span class="lm-meta">${lm.date} · ${lm.event}</span>
+         </div>
+       </div>`
+    : '';
   const poolTableHtml  = poolNum ? `<div class="section-title">Pool ${poolNum} Standings</div>${renderPoolTable(poolNum,[f.home,f.away])}` : '';
   const teamLinksHtml  = f.isKnockout ? '' : `<div class="section-title">Team Online Presence</div>${renderTeamLinksSection(f.home,f.away)}`;
   const newsHtml       = f.isKnockout ? '' : `<div class="section-title">Latest News</div><div class="news-area" id="news-${f.id}"><p class="news-loading">Expand to load news.</p></div>`;
@@ -752,6 +804,7 @@ function renderFixtureCard(f) {
       ${awayTeamCell}
     </div>
     <div class="fixture-body">
+      ${lmBodyHtml}
       ${poolTableHtml}
       ${teamLinksHtml}
       ${newsHtml}
@@ -821,3 +874,4 @@ renderFixtures();
 </script>
 </body>
 </html>
+
