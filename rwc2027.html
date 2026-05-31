@@ -50,52 +50,6 @@
   body { font-family: 'Roboto', Arial, sans-serif; font-size: 14px; line-height: 1.5; background: var(--bg); color: var(--text); min-height: 100vh; }
 
   /* ── SITE NAV ── */
-  /* ── SITE NAV — always black ── */
-  .site-nav { position: sticky; top: 0; z-index: 200; background: #000; border-bottom: 1px solid #222; box-shadow: 0 2px 8px rgba(0,0,0,0.5); font-family: 'Roboto', Arial, sans-serif; margin-bottom: 0.75rem; }
-  .site-nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; height: 56px; padding: 0 1rem; gap: 0; }
-  .site-nav-logo { display: flex; align-items: center; gap: 0.55rem; text-decoration: none; flex-shrink: 0; margin-right: 0.5rem; }
-  .site-nav-logo img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; display: block; flex-shrink: 0; }
-  .site-nav-logo-fallback { width: 36px; height: 36px; background: #4184f3; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; color: #fff; letter-spacing: 0.04em; flex-shrink: 0; }
-  /* Name always white on black */
-  .site-nav-name { font-size: 0.95rem; font-weight: 500; color: #ffffff; white-space: nowrap; }
-  .site-nav-links { display: flex; align-items: center; list-style: none; gap: 0; flex: 1; overflow: hidden; }
-  .site-nav-links > li { position: relative; }
-  /* Nav links: light grey by default, white on hover */
-  .site-nav-links > li > a,
-  .site-nav-links > li > span {
-    display: flex; align-items: center; gap: 0.2rem; padding: 0 0.7rem; height: 56px;
-    font-size: 0.82rem; font-weight: 400; color: #b0b0b0;
-    text-decoration: none; white-space: nowrap; cursor: pointer;
-    transition: color 0.15s, background 0.15s; letter-spacing: 0.01em;
-  }
-  .site-nav-links > li > a:hover,
-  .site-nav-links > li > span:hover { color: #ffffff; background: rgba(255,255,255,0.07); }
-  /* Active page link — white with bottom underline */
-  .site-nav-links > li > a.active { color: #ffffff; font-weight: 500; border-bottom: 2px solid #ffffff; }
-  .nav-chevron { font-size: 0.5rem; opacity: 0.5; transition: transform 0.2s; margin-top: 1px; }
-  .site-nav-links > li:hover .nav-chevron { transform: rotate(180deg); opacity: 0.8; }
-  /* Dropdowns: dark panel matching the nav */
-  .nav-dropdown {
-    display: none; position: absolute; top: 56px; left: 0;
-    background: #111; border: 1px solid #333;
-    border-radius: 0 0 4px 4px; box-shadow: 0 6px 16px rgba(0,0,0,0.6);
-    min-width: 180px; z-index: 300; list-style: none; padding: 0.3rem 0;
-  }
-  .site-nav-links > li:hover .nav-dropdown { display: block; }
-  .nav-dropdown li a { display: block; padding: 0.45rem 1rem; font-size: 0.8rem; color: #a0a0a0; text-decoration: none; transition: background 0.12s, color 0.12s; white-space: nowrap; }
-  .nav-dropdown li a:hover { background: rgba(255,255,255,0.08); color: #ffffff; }
-  /* Hamburger: white bars on black */
-  .site-nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 4px; width: 36px; height: 36px; padding: 6px; background: none; border: 1px solid #444; border-radius: 4px; cursor: pointer; margin-left: auto; flex-shrink: 0; }
-  .site-nav-hamburger span { display: block; height: 2px; background: #ccc; border-radius: 1px; transition: all 0.2s; width: 100%; }
-  /* Mobile drawer: black panel */
-  .site-nav-drawer { display: none; flex-direction: column; background: #111; border-top: 1px solid #2a2a2a; padding: 0.5rem 0 1rem; max-height: calc(100vh - 56px); overflow-y: auto; }
-  .site-nav-drawer.open { display: flex; }
-  .site-nav-drawer a { display: block; padding: 0.6rem 1.25rem; font-size: 0.85rem; color: #a0a0a0; text-decoration: none; border-bottom: 1px solid #1e1e1e; font-weight: 400; }
-  .site-nav-drawer a:hover { color: #ffffff; background: rgba(255,255,255,0.06); }
-  .site-nav-drawer a.sub { padding-left: 2.25rem; font-size: 0.8rem; color: #666; }
-  .site-nav-drawer a.sub:hover { color: #ccc; }
-  @media (max-width: 780px) { .site-nav-links { display: none; } .site-nav-hamburger { display: flex; } }
-
   /* ── PAGE HEADER ── */
   header { background: var(--header-bg); border-bottom: 1px solid var(--header-border); padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; box-shadow: var(--shadow); min-height: 48px; }
   .header-left { display: flex; align-items: center; gap: 0.75rem; }
@@ -131,37 +85,8 @@
     cursor: pointer;
     gap: 0.6rem;
     user-select: none;
-    position: relative;
-    overflow: hidden;
   }
-  .fixture-header-bg {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.07;
-    pointer-events: none;
-    transition: opacity 0.2s;
-  }
-  @media (prefers-color-scheme: dark) { .fixture-header-bg { opacity: 0.1; } }
-  .fixture-header:hover .fixture-header-bg { opacity: 0.13; }
-  .fixture-header > *:not(.fixture-header-bg) { position: relative; z-index: 1; }
   .fixture-header:hover { background: var(--accent-light); }
-
-  /* ── LAST MEETING BADGE ── */
-  .last-meeting-badge {
-    display: inline-block;
-    font-size: 0.6rem;
-    font-weight: 500;
-    color: var(--muted);
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 0.08rem 0.35rem;
-    margin-top: 0.2rem;
-    white-space: nowrap;
-    letter-spacing: 0.02em;
-  }
 
   .fixture-team { display: flex; align-items: center; gap: 0.5rem; }
   .fixture-team.right { flex-direction: row-reverse; text-align: right; }
@@ -240,48 +165,6 @@
   .venue-map { width: 100%; height: 200px; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
   .venue-map iframe { width: 100%; height: 100%; border: none; }
 
-  /* Last-meeting expanded panel */
-  .last-meeting-panel {
-    position: relative;
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    height: 140px;
-    background: var(--surface2);
-  }
-  .last-meeting-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: brightness(0.55) saturate(0.9);
-  }
-  .last-meeting-detail {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.3rem;
-    pointer-events: none;
-  }
-  .lm-score {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 0.04em;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
-    line-height: 1;
-  }
-  .lm-meta {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: rgba(255,255,255,0.85);
-    text-shadow: 0 1px 4px rgba(0,0,0,0.7);
-    letter-spacing: 0.03em;
-  }
-
   /* Date grouping */
   .date-group-header { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 0.4rem 0 0.35rem; border-bottom: 2px solid var(--border); margin-bottom: 0.6rem; margin-top: 1.4rem; }
   .date-group-header:first-child { margin-top: 0; }
@@ -292,44 +175,6 @@
 </style>
 </head>
 <body>
-
-<!-- ── mikeriversdale.co.nz site nav ── -->
-<nav class="site-nav" aria-label="Mike Riversdale site navigation">
-  <div class="site-nav-inner">
-    <a class="site-nav-logo" href="https://www.mikeriversdale.co.nz/Home" target="_blank" rel="noopener" title="Mike Riversdale">
-      <img src="https://lh3.googleusercontent.com/a/ACg8ocJmMSBkNhHHuFqA5sIBWjVJjaBxsVbzrn2M1WxHu0bHNqI2Qg=s96-c" alt="Mike Riversdale" width="36" height="36" style="border-radius:50%;object-fit:cover;display:block;border:2px solid #333;flex-shrink:0;" onerror="this.style.display='none';document.getElementById('nav-logo-fallback').style.display='flex'">
-      <div class="site-nav-logo-fallback" id="nav-logo-fallback" style="display:none">MR</div>
-      <span class="site-nav-name">Mike Riversdale</span>
-    </a>
-    <ul class="site-nav-links">
-      <li><a href="https://www.mikeriversdale.co.nz/Home" target="_blank" rel="noopener">Home</a></li>
-      <li><a href="https://www.mikeriversdale.co.nz/search" target="_blank" rel="noopener">Search</a></li>
-      <li><a href="https://blog.mikeriversdale.co.nz/" target="_blank" rel="noopener">Blog</a></li>
-      <li><a href="https://www.mikeriversdale.co.nz/photos" target="_blank" rel="noopener">Photos</a></li>
-      <li><a href="https://www.mikeriversdale.co.nz/videos" target="_blank" rel="noopener">Videos</a></li>
-      <li><a href="https://www.mikeriversdale.co.nz/listening" target="_blank" rel="noopener">Listening</a></li>
-      <li><a href="https://www.mikeriversdale.co.nz/reading" target="_blank" rel="noopener">Reading</a></li>
-      <li><a href="https://www.mikeriversdale.co.nz/rugby-calendar" target="_blank" rel="noopener" class="active">Rugby Calendar</a></li>
-      <li><a href="https://www.mikeriversdale.co.nz/work" target="_blank" rel="noopener">Work</a></li>
-      <li><a href="https://www.mikeriversdale.co.nz/about" target="_blank" rel="noopener">About</a></li>
-    </ul>
-    <button class="site-nav-hamburger" id="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <div class="site-nav-drawer" id="nav-drawer" aria-hidden="true">
-    <a href="https://www.mikeriversdale.co.nz/Home" target="_blank" rel="noopener">Home</a>
-    <a href="https://www.mikeriversdale.co.nz/search" target="_blank" rel="noopener">Search</a>
-    <a href="https://blog.mikeriversdale.co.nz/" target="_blank" rel="noopener">Blog</a>
-    <a href="https://www.mikeriversdale.co.nz/photos" target="_blank" rel="noopener">Photos</a>
-    <a href="https://www.mikeriversdale.co.nz/videos" target="_blank" rel="noopener">Videos</a>
-    <a href="https://www.mikeriversdale.co.nz/listening" target="_blank" rel="noopener">Listening</a>
-    <a href="https://www.mikeriversdale.co.nz/reading" target="_blank" rel="noopener">Reading</a>
-    <a href="https://www.mikeriversdale.co.nz/rugby-calendar" target="_blank" rel="noopener">Rugby Calendar</a>
-    <a href="https://www.mikeriversdale.co.nz/work" target="_blank" rel="noopener">Work</a>
-    <a href="https://www.mikeriversdale.co.nz/about" target="_blank" rel="noopener">About</a>
-  </div>
-</nav>
 
 <header>
   <div class="header-left">
@@ -450,50 +295,6 @@ const TEAM_LINKS = {
   "Hong Kong China":{ web:"https://www.hkrugby.com", twitter:"https://twitter.com/hkrugby", instagram:"https://www.instagram.com/hkrugbyunion/" },
   "Zimbabwe":{ web:"https://www.zru.co.zw", twitter:"https://twitter.com/ZimbabweRugby", instagram:"https://www.instagram.com/zimbabwerugby/" },
 };
-
-// ─── LAST MEETINGS ──────────────────────────────────────────────────────────
-// img: public Wikimedia Commons thumbnails — freely licensed, no auth needed
-const LAST_MEETINGS = {
-  "Australia|Hong Kong China":    { score:"27–5",   date:"Oct 2003", event:"RWC 2003 Pool C",       img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Telstra_Stadium_interior_2.jpg/640px-Telstra_Stadium_interior_2.jpg" },
-  "Wales|Zimbabwe":               { score:"49–11",  date:"May 1987", event:"RWC 1987 Pool B",       img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Eden_Park%2C_Auckland%2C_New_Zealand_-_panoramio_%281%29.jpg/640px-Eden_Park%2C_Auckland%2C_New_Zealand_-_panoramio_%281%29.jpg" },
-  "England|Tonga":                { score:"35–3",   date:"Sept 2023", event:"RWC 2023 Pool D",      img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Stade_de_Nice_-_panorama.jpg/640px-Stade_de_Nice_-_panorama.jpg" },
-  "France|USA":                   { score:"27–13",  date:"Oct 2023", event:"RWC 2023 Pool A",       img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Stade_de_Bordeaux_-_panoramique.JPG/640px-Stade_de_Bordeaux_-_panoramique.JPG" },
-  "New Zealand|Chile":            { score:"76–0",   date:"Sept 2023", event:"RWC 2023 Pool A",      img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Stade_de_Toulouse_%28vu_du_ciel%29.jpg/640px-Stade_de_Toulouse_%28vu_du_ciel%29.jpg" },
-  "South Africa|Italy":           { score:"49–3",   date:"Oct 2023", event:"RWC 2023 Pool B",       img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Geoffroy_Guichard_-_Vue_d%27ensemble.jpg/640px-Geoffroy_Guichard_-_Vue_d%27ensemble.jpg" },
-  "Scotland|Uruguay":             { score:"45–3",   date:"Sept 2023", event:"RWC 2023 Pool B",      img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Stade_de_Nice.JPG/640px-Stade_de_Nice.JPG" },
-  "Japan|Samoa":                  { score:"28–22",  date:"Sept 2023", event:"RWC 2023 Pool D",      img:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Stade_de_Toulouse_panoramic.jpg/640px-Stade_de_Toulouse_panoramic.jpg" },
-  "Georgia|Romania":              { score:"30–14",  date:"Nov 2024", event:"Autumn Nations",         img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Dinamo_Stadium%2C_Bucharest.jpg/640px-Dinamo_Stadium%2C_Bucharest.jpg" },
-  "Argentina|Canada":             { score:"53–20",  date:"Sept 2023", event:"RWC 2023 Pool D",      img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Stade_de_Toulouse_%28vu_du_ciel%29.jpg/640px-Stade_de_Toulouse_%28vu_du_ciel%29.jpg" },
-  "Fiji|Spain":                   { score:"22–19",  date:"Oct 2023", event:"RWC 2023 Pool C",       img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Stade_de_Bordeaux_-_panoramique.JPG/640px-Stade_de_Bordeaux_-_panoramique.JPG" },
-  "Ireland|Portugal":             { score:"82–8",   date:"Oct 2023", event:"RWC 2023 Pool B",       img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Geoffroy_Guichard_-_Vue_d%27ensemble.jpg/640px-Geoffroy_Guichard_-_Vue_d%27ensemble.jpg" },
-  "England|Zimbabwe":             { score:"101–10", date:"June 1987", event:"RWC 1987 Pool B",      img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Eden_Park%2C_Auckland%2C_New_Zealand_-_panoramio_%281%29.jpg/640px-Eden_Park%2C_Auckland%2C_New_Zealand_-_panoramio_%281%29.jpg" },
-  "Wales|Tonga":                  { score:"29–17",  date:"Oct 2023", event:"RWC 2023 Pool C",       img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Stade_de_Nice_-_panorama.jpg/640px-Stade_de_Nice_-_panorama.jpg" },
-  "France|Japan":                 { score:"52–12",  date:"Oct 2023", event:"RWC 2023 Pool D",       img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Stade_de_Toulouse_%28vu_du_ciel%29.jpg/640px-Stade_de_Toulouse_%28vu_du_ciel%29.jpg" },
-  "USA|Samoa":                    { score:"24–14",  date:"Sept 2023", event:"RWC 2023 Pool D",      img:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Stade_de_Toulouse_panoramic.jpg/640px-Stade_de_Toulouse_panoramic.jpg" },
-  "New Zealand|Australia":        { score:"42–10",  date:"Oct 2024", event:"Rugby Championship",    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Eden_Park_rugby.jpg/640px-Eden_Park_rugby.jpg" },
-  "Chile|Hong Kong China":        { score:"35–10",  date:"Sept 2023", event:"RWC 2023 Pool A",      img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Stade_de_Toulouse_%28vu_du_ciel%29.jpg/640px-Stade_de_Toulouse_%28vu_du_ciel%29.jpg" },
-  "South Africa|Georgia":         { score:"43–10",  date:"Oct 2023", event:"RWC 2023 Pool B",       img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Geoffroy_Guichard_-_Vue_d%27ensemble.jpg/640px-Geoffroy_Guichard_-_Vue_d%27ensemble.jpg" },
-  "Argentina|Spain":              { score:"24–13",  date:"Jun 2021", event:"Summer Test",            img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Estadio_Jos%C3%A9_Amalfitani.jpg/640px-Estadio_Jos%C3%A9_Amalfitani.jpg" },
-  "Ireland|Scotland":             { score:"22–17",  date:"Mar 2025", event:"Six Nations",            img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Aviva_Stadium%2C_Dublin_-_panoramio.jpg/640px-Aviva_Stadium%2C_Dublin_-_panoramio.jpg" },
-  "Uruguay|Portugal":             { score:"26–20",  date:"Oct 2023", event:"RWC 2023 Pool C",       img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Stade_de_Nice_-_panorama.jpg/640px-Stade_de_Nice_-_panorama.jpg" },
-  "Italy|Romania":                { score:"57–7",   date:"Nov 2023", event:"Autumn Test",            img:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Stadio_Olimpico_di_Roma.jpg/640px-Stadio_Olimpico_di_Roma.jpg" },
-  "Japan|USA":                    { score:"39–26",  date:"Jun 2024", event:"Pacific Nations Cup",   img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Eden_Park_rugby.jpg/640px-Eden_Park_rugby.jpg" },
-  "New Zealand|Hong Kong China":  { score:"145–17", date:"May 1995", event:"RWC 1995 Pool C",       img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Eden_Park_rugby.jpg/640px-Eden_Park_rugby.jpg" },
-  "Tonga|Zimbabwe":               { score:"–",      date:"First meeting", event:"RWC 2027",         img:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Suncorp_Stadium_panorama.jpg/640px-Suncorp_Stadium_panorama.jpg" },
-  "Argentina|Fiji":               { score:"35–24",  date:"Oct 2023", event:"RWC 2023 QF",          img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Stade_de_Bordeaux_-_panoramique.JPG/640px-Stade_de_Bordeaux_-_panoramique.JPG" },
-  "Australia|Chile":              { score:"42–12",  date:"Sept 2023", event:"RWC 2023 Pool C",      img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Stade_de_Toulouse_%28vu_du_ciel%29.jpg/640px-Stade_de_Toulouse_%28vu_du_ciel%29.jpg" },
-  "England|Wales":                { score:"16–14",  date:"Mar 2025", event:"Six Nations",            img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Twickenham_stadium_aerial_view.jpg/640px-Twickenham_stadium_aerial_view.jpg" },
-  "Spain|Canada":                 { score:"33–29",  date:"Oct 2023", event:"RWC 2023 Pool C",       img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Stade_de_Nice_-_panorama.jpg/640px-Stade_de_Nice_-_panorama.jpg" },
-  "Scotland|Portugal":            { score:"52–17",  date:"Oct 2023", event:"RWC 2023 Pool B",       img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Geoffroy_Guichard_-_Vue_d%27ensemble.jpg/640px-Geoffroy_Guichard_-_Vue_d%27ensemble.jpg" },
-  "Ireland|Uruguay":              { score:"73–0",   date:"Oct 2023", event:"RWC 2023 Pool B",       img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Geoffroy_Guichard_-_Vue_d%27ensemble.jpg/640px-Geoffroy_Guichard_-_Vue_d%27ensemble.jpg" },
-  "South Africa|Romania":         { score:"76–0",   date:"Sept 2023", event:"RWC 2023 Pool B",      img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Geoffroy_Guichard_-_Vue_d%27ensemble.jpg/640px-Geoffroy_Guichard_-_Vue_d%27ensemble.jpg" },
-  "Italy|Georgia":                { score:"28–5",   date:"Nov 2023", event:"Autumn Test",            img:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Stadio_Olimpico_di_Roma.jpg/640px-Stadio_Olimpico_di_Roma.jpg" },
-  "France|Samoa":                 { score:"52–22",  date:"Nov 2023", event:"Autumn Test",            img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Stade_de_Bordeaux_-_panoramique.JPG/640px-Stade_de_Bordeaux_-_panoramique.JPG" },
-};
-
-function getLastMeeting(home, away) {
-  return LAST_MEETINGS[`${home}|${away}`] || LAST_MEETINGS[`${away}|${home}`] || null;
-}
 
 // ─── VENUES ─────────────────────────────────────────────────────────────────
 const VENUES = {
@@ -743,7 +544,6 @@ function renderFixtureCard(f) {
   const v        = VENUES[f.venue];
   const city     = v ? v.city : '';
   const venueShort = f.venue.split(' ').slice(0,2).join(' ');
-  const lm       = f.isKnockout ? null : getLastMeeting(f.home, f.away);
 
   // Knockout label
   let knockoutLabel = '';
@@ -755,17 +555,6 @@ function renderFixtureCard(f) {
     else if (f.id === 'fin')         knockoutLabel = '🏆 THE FINAL';
   }
 
-  // Last-meeting badge under the vs centre
-  const lmBadge = lm
-    ? `<span class="last-meeting-badge" title="Last meeting: ${lm.event}">Last: ${lm.score} · ${lm.date}</span>`
-    : '';
-
-  // Background image div (subtle, behind header content)
-  const bgStyle = lm && lm.img
-    ? `style="background-image:url('${lm.img}')"`
-    : '';
-  const bgDiv = lm && lm.img ? `<div class="fixture-header-bg" ${bgStyle}></div>` : '';
-
   // Team cells
   const homeTeamCell = f.isKnockout
     ? `<div class="fixture-team left"><div class="team-info"><div class="team-name">${f.home}</div></div></div>`
@@ -774,17 +563,6 @@ function renderFixtureCard(f) {
     ? `<div class="fixture-team right"><div class="team-info"><div class="team-name">${f.away}</div></div></div>`
     : renderTeamCell(f.away, 'right');
 
-  // Body sections
-  const lmBodyHtml = lm && lm.img
-    ? `<div class="section-title">Last Meeting · ${lm.event}</div>
-       <div class="last-meeting-panel">
-         <img class="last-meeting-img" src="${lm.img}" alt="Last meeting: ${f.home} vs ${f.away}" loading="lazy" onerror="this.parentElement.style.display='none'">
-         <div class="last-meeting-detail">
-           <span class="lm-score">${lm.score}</span>
-           <span class="lm-meta">${lm.date} · ${lm.event}</span>
-         </div>
-       </div>`
-    : '';
   const poolTableHtml  = poolNum ? `<div class="section-title">Pool ${poolNum} Standings</div>${renderPoolTable(poolNum,[f.home,f.away])}` : '';
   const teamLinksHtml  = f.isKnockout ? '' : `<div class="section-title">Team Online Presence</div>${renderTeamLinksSection(f.home,f.away)}`;
   const newsHtml       = f.isKnockout ? '' : `<div class="section-title">Latest News</div><div class="news-area" id="news-${f.id}"><p class="news-loading">Expand to load news.</p></div>`;
@@ -792,19 +570,16 @@ function renderFixtureCard(f) {
 
   return `<div class="fixture-card" id="card-${f.id}" data-home="${f.home}" data-away="${f.away}" data-pool="${poolNum||''}" data-venue="${f.venue}">
     <div class="fixture-header" onclick="toggleCard('${f.id}')">
-      ${bgDiv}
       ${homeTeamCell}
       <div class="fixture-vs">
         <span class="vs-date">${formatDate(f.date)}</span>
         <span class="vs-label">${knockoutLabel || 'vs'}</span>
         <span class="vs-venue-short">📍 ${venueShort}${city?`, ${city}`:''}</span>
-        ${lmBadge}
         <span class="expand-icon">▼</span>
       </div>
       ${awayTeamCell}
     </div>
     <div class="fixture-body">
-      ${lmBodyHtml}
       ${poolTableHtml}
       ${teamLinksHtml}
       ${newsHtml}
@@ -844,34 +619,6 @@ function toggleCard(id) {
 populateFilters();
 renderFixtures();
 
-// ─── HAMBURGER ──────────────────────────────────────────────────────────────
-(function() {
-  const btn = document.getElementById('nav-hamburger');
-  const drawer = document.getElementById('nav-drawer');
-  if (!btn || !drawer) return;
-  btn.addEventListener('click', function() {
-    const isOpen = drawer.classList.toggle('open');
-    btn.setAttribute('aria-expanded', isOpen);
-    drawer.setAttribute('aria-hidden', !isOpen);
-    const spans = btn.querySelectorAll('span');
-    if (isOpen) {
-      spans[0].style.cssText = 'transform:translateY(6px) rotate(45deg)';
-      spans[1].style.cssText = 'opacity:0';
-      spans[2].style.cssText = 'transform:translateY(-6px) rotate(-45deg)';
-    } else {
-      spans.forEach(s => s.style.cssText = '');
-    }
-  });
-  drawer.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      drawer.classList.remove('open');
-      btn.setAttribute('aria-expanded','false');
-      drawer.setAttribute('aria-hidden','true');
-      btn.querySelectorAll('span').forEach(s => s.style.cssText = '');
-    });
-  });
-})();
 </script>
 </body>
 </html>
-
